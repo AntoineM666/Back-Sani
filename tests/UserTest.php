@@ -31,7 +31,9 @@ class UserTest extends TestCase
 
 
     }
-    public function testIsFalse(){
+
+    public function testIsFalse()
+    {
         $user = new User();
 
         $user ->setEmail('true@test.com')
@@ -52,7 +54,9 @@ class UserTest extends TestCase
         $this->assertFalse($user->getVille() === 'false');
         $this->assertFalse($user->getCp() === 'false');
     }
-    public function testIsEmpty(){
+
+    public function testIsEmpty()
+    {
         $user = new User();
         $this->assertEmpty($user->getEmail());
         $this->assertEmpty($user->getPrenom());
