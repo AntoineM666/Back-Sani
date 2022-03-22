@@ -25,7 +25,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             'read'=> false,
             'security'=>'is_granted("ROLE_USER")'
 
-        ]
+        ],
+        'post' =>[]
     ],
     
     itemOperations:[
@@ -34,7 +35,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
             'openapi_context' => ['sumuary' => 'hidden'],
             'read'=>false,
             'output'=>false
-        ]
+        ],
+        'put'=>[],
+        'delete'=>[],
+        'patch'=>[]
         ],
 
 
