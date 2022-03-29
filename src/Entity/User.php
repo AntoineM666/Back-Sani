@@ -23,7 +23,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
             'method'=> 'get',
             'controller'=> MeController::class,
             'read'=> false,
-            'security'=>'is_granted("ROLE_USER")'
+            'security'=>'is_granted("ROLE_USER")',
+            'openapi_context'=>[
+                'summary'=> 'recuperer les infos de l\'utilisateur connecté',
+            ]
 
         ],
         'post' =>[]
@@ -32,7 +35,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
     itemOperations:[
         'get'=> [ 
             'controller' => NotFoundAction::class,
-            'openapi_context' => ['sumuary' => 'hidden'],
+            'openapi_context' => [
+                'summary' => 'hidden',
+            ],
             'read'=>false,
             'output'=>false
         ],
