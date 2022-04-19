@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RestaurantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RestaurantRepository::class)]
@@ -29,6 +31,14 @@ class Restaurant
 
     #[ORM\Column(type: 'string', length: 255)]
     private $numero_tel;
+
+    #[ORM\OneToMany(mappedBy: 'categorieRelation', targetEntity: Plat::class, orphanRemoval: true)]
+    private $plats;
+
+    public function __construct()
+    {
+        $this->plats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -91,6 +101,36 @@ class Restaurant
     public function setNumeroTel(string $numero_tel): self
     {
         $this->numero_tel = $numero_tel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Plat>
+     */
+    public function getPlats(): Collection
+    {
+        return $this->plats;
+    }
+
+    public function addPlat(Plat $plat): self
+    {
+        if (!$this->plats->contains($plat)) {
+            $this->plats[] = $plat;
+            $plat->setCategorieRelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(Plat $plat): self
+    {
+        if ($this->plats->removeElement($plat)) {
+            // set the owning side to null (unless already changed)
+            if ($plat->getCategorieRelation() === $this) {
+                $plat->setCategorieRelation(null);
+            }
+        }
 
         return $this;
     }
