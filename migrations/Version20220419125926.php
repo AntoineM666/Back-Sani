@@ -22,7 +22,7 @@ final class Version20220419125926 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE plat (id INT AUTO_INCREMENT NOT NULL, categorie_relation_id INT NOT NULL, nom VARCHAR(255) NOT NULL, INDEX IDX_2038A207EDA8B752 (categorie_relation_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE plat ADD CONSTRAINT FK_2038A207EDA8B752 FOREIGN KEY (categorie_relation_id) REFERENCES restaurant (id)');
-        $this->addSql('DROP TABLE categorie');
+
     }
 
     public function down(Schema $schema): void
