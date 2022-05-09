@@ -21,6 +21,9 @@ class Menu
     #[ORM\Column(type: 'integer')]
     private $prix;
 
+    #[ORM\ManyToOne(targetEntity: Plat::class, inversedBy: 'menus')]
+    private $MenuRelation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +49,18 @@ class Menu
     public function setPrix(int $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getMenuRelation(): ?Plat
+    {
+        return $this->MenuRelation;
+    }
+
+    public function setMenuRelation(?Plat $MenuRelation): self
+    {
+        $this->MenuRelation = $MenuRelation;
 
         return $this;
     }
